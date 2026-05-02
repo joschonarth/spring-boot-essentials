@@ -30,7 +30,7 @@ public class StudentEntity {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "physical_assessment_id")
     private PhysicalAssessmentEntity physicalAssessment;
 
