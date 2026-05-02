@@ -1,9 +1,9 @@
 package br.com.joschonarth.spring_boot_essentials.database.model;
 
+import br.com.joschonarth.spring_boot_essentials.enums.DifficultyLevel;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -26,8 +26,9 @@ public class ExerciseEntity {
     private String muscleGroup;
 
     @Column()
-    private LocalDate equipment;
+    private String equipment;
 
-    @Column(name = "difficulty_level")
-    private LocalDate difficultyLevel;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "difficulty_level", nullable = false)
+    private DifficultyLevel difficultyLevel;
 }
