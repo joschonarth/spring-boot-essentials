@@ -17,6 +17,8 @@ public class ExerciseDTO {
 
     @NotBlank(message = "Muscle group is required")
     private String muscleGroup;
+
     private String equipment;
+
     private DifficultyLevel difficultyLevel;
 }

@@ -27,7 +27,7 @@ public class StudentEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "birth_date", nullable = false)
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @OneToOne(cascade = CascadeType.ALL)
