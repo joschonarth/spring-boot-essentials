@@ -33,4 +33,8 @@ public class ExerciseService {
 
         exerciseRepository.save(exercise);
     }
+
+    public List<ExerciseEntity> getExerciseByMuscleGroup(String muscleGroup) {
+        return exerciseRepository.findAllByMuscleGroup(muscleGroup);
+    }
 }

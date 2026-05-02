@@ -28,4 +28,11 @@ public class ExerciseController {
     public void saveExercise(@Valid @RequestBody ExerciseDTO exerciseDTO) {
         exerciseService.save(exerciseDTO);
     }
+
+    @GetMapping("/group/{muscleGroup}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ExerciseEntity> getExerciseByMuscleGroup(@PathVariable String muscleGroup) {
+        return exerciseService.getExerciseByMuscleGroup(muscleGroup);
+    }
+
 }
