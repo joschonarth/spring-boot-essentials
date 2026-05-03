@@ -33,7 +33,7 @@ public class StudentService {
     }
 
     public PhysicalAssessmentEntity getStudentAssessment(UUID studentId) throws NotFoundException {
-         StudentEntity student = studentRepository.findById(studentId)
+         StudentEntity student = studentRepository.findByIdFetch(studentId)
                 .orElseThrow(() -> new NotFoundException("Student not found"));
 
          PhysicalAssessmentEntity assessment = student.getPhysicalAssessment();

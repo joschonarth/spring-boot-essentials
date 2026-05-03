@@ -30,10 +30,10 @@ public class StudentEntity {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "physical_assessment_id")
     private PhysicalAssessmentEntity physicalAssessment;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private Set<WorkoutEntity> workouts = new HashSet<>();
 }
