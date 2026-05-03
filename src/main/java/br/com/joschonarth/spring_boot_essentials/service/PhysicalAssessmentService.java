@@ -5,10 +5,13 @@ import br.com.joschonarth.spring_boot_essentials.database.model.StudentEntity;
 import br.com.joschonarth.spring_boot_essentials.database.repository.IPhysicalAssessmentRepository;
 import br.com.joschonarth.spring_boot_essentials.database.repository.IStudentRepository;
 import br.com.joschonarth.spring_boot_essentials.dto.PhysicalAssessmentDTO;
+import br.com.joschonarth.spring_boot_essentials.dto.PhysicalAssessmentProjection;
 import br.com.joschonarth.spring_boot_essentials.exception.BadRequestException;
 import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,5 +37,9 @@ public class PhysicalAssessmentService {
 
         student.setPhysicalAssessment(physicalAssessment);
         studentRepository.save(student);
+    }
+
+    public List<PhysicalAssessmentProjection> getAllAssessments() {
+        return physicalAssessmentRepository.getAllAssessments();
     }
 }
