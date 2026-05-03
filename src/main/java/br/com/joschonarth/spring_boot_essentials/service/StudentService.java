@@ -1,11 +1,15 @@
 package br.com.joschonarth.spring_boot_essentials.service;
 
+import br.com.joschonarth.spring_boot_essentials.database.model.PhysicalAssessmentEntity;
 import br.com.joschonarth.spring_boot_essentials.database.model.StudentEntity;
 import br.com.joschonarth.spring_boot_essentials.database.repository.IStudentRepository;
 import br.com.joschonarth.spring_boot_essentials.dto.StudentDTO;
 import br.com.joschonarth.spring_boot_essentials.exception.BadRequestException;
+import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +30,18 @@ public class StudentService {
                 .email(studentDTO.getEmail())
                 .birthDate(studentDTO.getBirthDate())
                 .build());
+    }
+
+    public PhysicalAssessmentEntity getStudentAssessment(UUID studentId) throws NotFoundException {
+         StudentEntity student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new NotFoundException("Student not found"));
+
+         PhysicalAssessmentEntity assessment = student.getPhysicalAssessment();
+
+         if (assessment == null) {
+             throw new NotFoundException("Physical Assessment not found for this student");
+         }
+
+         return assessment;
     }
 }
