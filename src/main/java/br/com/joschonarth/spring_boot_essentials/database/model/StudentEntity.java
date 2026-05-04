@@ -30,7 +30,7 @@ public class StudentEntity {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "physical_assessment_id")
     private PhysicalAssessmentEntity physicalAssessment;
 

@@ -29,4 +29,10 @@ public class StudentController {
     public PhysicalAssessmentEntity getPhysicalAssessment(@PathVariable UUID studentId) throws NotFoundException {
         return studentService.getStudentAssessment(studentId);
     }
+
+    @DeleteMapping("{studentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeStudent(@PathVariable UUID studentId) throws NotFoundException {
+        studentService.deleteStudent(studentId);
+    }
 }
