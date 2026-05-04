@@ -7,6 +7,7 @@ import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import br.com.joschonarth.spring_boot_essentials.service.PhysicalAssessmentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +30,11 @@ public class PhysicalAssessmentController {
     @ResponseStatus(HttpStatus.OK)
     public List<PhysicalAssessmentProjection> getAllAssessments() {
         return physicalAssessmentService.getAllAssessments();
+    }
+
+    @GetMapping("page/{page}/size/{size}")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<PhysicalAssessmentProjection> getAllAssessmentsPageable(@PathVariable Integer page, @PathVariable Integer size) {
+        return physicalAssessmentService.getAllAssessmentsPageable(page, size);
     }
 }

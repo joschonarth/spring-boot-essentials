@@ -9,6 +9,8 @@ import br.com.joschonarth.spring_boot_essentials.dto.PhysicalAssessmentProjectio
 import br.com.joschonarth.spring_boot_essentials.exception.BadRequestException;
 import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +43,9 @@ public class PhysicalAssessmentService {
 
     public List<PhysicalAssessmentProjection> getAllAssessments() {
         return physicalAssessmentRepository.getAllAssessments();
+    }
+
+    public Page<PhysicalAssessmentProjection> getAllAssessmentsPageable(Integer page, Integer size) {
+        return physicalAssessmentRepository.getAllAssessmentsPage(PageRequest.of(page, size));
     }
 }
