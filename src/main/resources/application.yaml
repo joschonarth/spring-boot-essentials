@@ -17,3 +17,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  jwt:
+    expiration: ${JWT_EXPIRATION:900000} # 15 minutes
+    key: ${JWT_KEY:nPHO9M8T>4^JLvtSBD`dro%$<g1@"2zA|_jF:h[C\EeVRm5Ky#)'0u7(qc~{YU-+aN=/IbW*iZl3x&;ksQ}],X?6fGw.p!}
