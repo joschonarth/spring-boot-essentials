@@ -62,4 +62,16 @@ public class StudentService {
                     .build())
                 .toList();
     }
+
+    public StudentResponseDTO getStudentById(UUID studentId) throws NotFoundException {
+        StudentEntity student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new NotFoundException("Student not found"));
+
+        return StudentResponseDTO.builder()
+                .id(student.getId())
+                .name(student.getName())
+                .email(student.getEmail())
+                .birthDate(student.getBirthDate())
+                .build();
+    }
 }

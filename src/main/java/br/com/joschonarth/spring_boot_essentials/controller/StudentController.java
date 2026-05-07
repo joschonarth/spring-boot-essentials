@@ -65,4 +65,20 @@ public class StudentController {
     public List<StudentResponseDTO> getAllStudents() {
         return studentService.getAllStudents();
     }
+
+    @Operation(summary = "Get student by ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Student retrieved successfully"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden - cannot access another student's profile"),
+            @ApiResponse(responseCode = "404", description = "Student not found")
+    })
+    @PreAuthorize("#studentId == authentication.principal.id or hasRole('ADMIN')")
+    @GetMapping("{studentId}")
+    @ResponseStatus(HttpStatus.OK)
+    public StudentResponseDTO getStudentById(
+            @Parameter(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
+            @PathVariable UUID studentId) throws NotFoundException {
+        return studentService.getStudentById(studentId);
+    }
 }
