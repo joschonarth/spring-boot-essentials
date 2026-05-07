@@ -51,6 +51,7 @@ public class AuthenticationService {
         studentRepository.save(StudentEntity.builder()
                 .name(dto.getName())
                 .email(dto.getEmail())
+                .birthDate(dto.getBirthDate())
                 .roles(Set.of(role))
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .build());

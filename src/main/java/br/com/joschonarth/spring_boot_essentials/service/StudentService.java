@@ -6,9 +6,7 @@ import br.com.joschonarth.spring_boot_essentials.database.model.WorkoutEntity;
 import br.com.joschonarth.spring_boot_essentials.database.repository.IPhysicalAssessmentRepository;
 import br.com.joschonarth.spring_boot_essentials.database.repository.IStudentRepository;
 import br.com.joschonarth.spring_boot_essentials.database.repository.IWorkoutRepository;
-import br.com.joschonarth.spring_boot_essentials.dto.StudentDTO;
 import br.com.joschonarth.spring_boot_essentials.dto.StudentResponseDTO;
-import br.com.joschonarth.spring_boot_essentials.exception.BadRequestException;
 import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,21 +22,6 @@ public class StudentService {
     private final IPhysicalAssessmentRepository physicalAssessmentRepository;
     private final IWorkoutRepository workoutRepository;
     private final IStudentRepository studentRepository;
-
-    public void createStudent(StudentDTO studentDTO) throws BadRequestException {
-        StudentEntity student = studentRepository.findByEmail(studentDTO.getEmail())
-                .orElse(null);
-
-        if (student != null) {
-            throw new BadRequestException("Student already registered with this email");
-        }
-
-        studentRepository.save(StudentEntity.builder()
-                .name(studentDTO.getName())
-                .email(studentDTO.getEmail())
-                .birthDate(studentDTO.getBirthDate())
-                .build());
-    }
 
     public PhysicalAssessmentEntity getStudentAssessment(UUID studentId) throws NotFoundException {
          StudentEntity student = studentRepository.findByIdFetch(studentId)

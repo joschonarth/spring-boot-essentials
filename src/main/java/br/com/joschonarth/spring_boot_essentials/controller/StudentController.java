@@ -1,9 +1,7 @@
 package br.com.joschonarth.spring_boot_essentials.controller;
 
 import br.com.joschonarth.spring_boot_essentials.database.model.PhysicalAssessmentEntity;
-import br.com.joschonarth.spring_boot_essentials.dto.StudentDTO;
 import br.com.joschonarth.spring_boot_essentials.dto.StudentResponseDTO;
-import br.com.joschonarth.spring_boot_essentials.exception.BadRequestException;
 import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import br.com.joschonarth.spring_boot_essentials.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,7 +9,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,18 +24,6 @@ import java.util.UUID;
 public class StudentController {
 
     private final StudentService studentService;
-
-    @Operation(summary = "Create a new student")
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Student created successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid data or email already in use"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized")
-    })
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createStudent(@Valid @RequestBody StudentDTO studentDTO) throws BadRequestException {
-        studentService.createStudent(studentDTO);
-    }
 
     @Operation(summary = "Get student physical assessment", description = "Students can only view their own assessment. ADMIN can view all.")
     @ApiResponses({

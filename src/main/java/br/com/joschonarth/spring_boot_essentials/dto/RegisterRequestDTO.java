@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,4 +27,7 @@ public class RegisterRequestDTO {
     @Schema(description = "User password", example = "secret123")
     @NotBlank
     private String password;
+
+    @Schema(description = "User birth date", example = "2000-01-15")
+    private LocalDate birthDate;
 }
