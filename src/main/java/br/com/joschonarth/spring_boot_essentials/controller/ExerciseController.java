@@ -2,6 +2,8 @@ package br.com.joschonarth.spring_boot_essentials.controller;
 
 import br.com.joschonarth.spring_boot_essentials.database.model.ExerciseEntity;
 import br.com.joschonarth.spring_boot_essentials.dto.ExerciseDTO;
+import br.com.joschonarth.spring_boot_essentials.dto.ExerciseResponseDTO;
+import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import br.com.joschonarth.spring_boot_essentials.service.ExerciseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -15,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Tag(name = "Exercise", description = "Endpoints for exercise management")
 @RestController
@@ -60,6 +63,20 @@ public class ExerciseController {
             @Parameter(description = "Muscle group name", example = "CHEST")
             @PathVariable String muscleGroup) {
         return exerciseService.getExerciseByMuscleGroup(muscleGroup);
+    }
+
+    @Operation(summary = "Get exercise by ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Exercise retrieved successfully"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "404", description = "Exercise not found")
+    })
+    @GetMapping("{exerciseId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ExerciseResponseDTO getExerciseById(
+            @Parameter(description = "Exercise ID", example = "123e4567-e89b-12d3-a456-426614174000")
+            @PathVariable UUID exerciseId) throws NotFoundException {
+        return exerciseService.getExerciseById(exerciseId);
     }
 
 }
