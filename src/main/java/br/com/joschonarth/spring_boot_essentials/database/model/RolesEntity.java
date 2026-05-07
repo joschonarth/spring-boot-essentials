@@ -1,8 +1,6 @@
 package br.com.joschonarth.spring_boot_essentials.database.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,6 +17,7 @@ import java.util.UUID;
 public class RolesEntity implements GrantedAuthority {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
 

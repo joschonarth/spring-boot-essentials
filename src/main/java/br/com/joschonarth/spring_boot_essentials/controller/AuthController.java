@@ -1,6 +1,8 @@
 package br.com.joschonarth.spring_boot_essentials.controller;
 
+import br.com.joschonarth.spring_boot_essentials.dto.LoginRequestDTO;
 import br.com.joschonarth.spring_boot_essentials.dto.RegisterRequestDTO;
+import br.com.joschonarth.spring_boot_essentials.dto.TokenResponseDTO;
 import br.com.joschonarth.spring_boot_essentials.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +21,10 @@ public class AuthController {
     @PostMapping("register")
     public void register(@RequestBody @Valid RegisterRequestDTO registerRequestDTO) throws Exception {
         authenticationService.register(registerRequestDTO);
+    }
+
+    @PostMapping("login")
+    public TokenResponseDTO login(@RequestBody @Valid LoginRequestDTO loginRequestDTO) throws Exception {
+        return authenticationService.login(loginRequestDTO);
     }
 }
