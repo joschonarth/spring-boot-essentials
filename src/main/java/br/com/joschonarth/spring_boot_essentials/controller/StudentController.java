@@ -8,6 +8,7 @@ import br.com.joschonarth.spring_boot_essentials.service.StudentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -25,6 +26,7 @@ public class StudentController {
         studentService.createStudent(studentDTO);
     }
 
+    @PreAuthorize("#studentId == authentication.principal.id or hasRole('ADMIN')")
     @GetMapping("{studentId}/assessment")
     public PhysicalAssessmentEntity getPhysicalAssessment(@PathVariable UUID studentId) throws NotFoundException {
         return studentService.getStudentAssessment(studentId);
