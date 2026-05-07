@@ -1,15 +1,24 @@
 spring:
   application:
     name: spring-boot-essentials
+
+#  H2 In-Memory Database (uncomment to use H2 instead of MySQL)
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+    url: jdbc:mysql://localhost:3306/gym?createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:docker}
+    password: ${DB_PASSWORD:docker}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,6 +26,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
 
 springdoc:
   swagger-ui:
