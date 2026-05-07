@@ -1,5 +1,6 @@
 package br.com.joschonarth.spring_boot_essentials.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -14,16 +15,21 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 @Builder
+@Schema(description = "Request body for creating a workout")
 public class WorkoutDTO {
 
+    @Schema(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
     @NotNull
     private UUID studentId;
 
+    @Schema(description = "Workout name", example = "Upper Body A")
     @NotBlank
     private String name;
 
+    @Schema(description = "Workout objective", example = "Muscle hypertrophy")
     private String objective;
 
+    @Schema(description = "List of exercise IDs", example = "[\"123e4567-e89b-12d3-a456-426614174000\"]")
     @NotEmpty
     private List<UUID> exerciseId;
 }

@@ -1,5 +1,6 @@
 package br.com.joschonarth.spring_boot_essentials.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,11 +11,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(description = "Request body for user login")
 public class LoginRequestDTO {
 
+    @Schema(description = "User email", example = "john@email.com")
     @NotBlank
     private String email;
 
+    @Schema(description = "User password", example = "secret123")
     @NotBlank
     private String password;
 }
