@@ -1,62 +1,62 @@
 <div align="center">
 
-# 💪 GymFlow API
+# 🌱 SpringFit
 
-*Gerencie alunos, treinos, exercícios e avaliações físicas com segurança e praticidade.*
+*A modern REST API for managing gyms, students, and workouts with Spring Boot.*
 
-<img src="https://img.shields.io/github/last-commit/joschonarth/spring-boot-essentials?style=default&logo=git&logoColor=white&color=B07219&labelColor=27272a" alt="last-commit">
-<img src="https://img.shields.io/github/languages/top/joschonarth/spring-boot-essentials?style=default&color=B07219&labelColor=27272a" alt="repo-top-language">
-<img src="https://img.shields.io/github/languages/count/joschonarth/spring-boot-essentials?style=default&color=B07219&labelColor=27272a" alt="repo-language-count">
+<img src="https://img.shields.io/github/last-commit/joschonarth/spring-fit?style=default&logo=git&logoColor=white&color=6DB33F&labelColor=27272a" alt="last-commit">
+<img src="https://img.shields.io/github/languages/top/joschonarth/spring-fit?style=default&color=6DB33F&labelColor=27272a" alt="repo-top-language">
+<img src="https://img.shields.io/github/languages/count/joschonarth/spring-fit?style=default&color=6DB33F&labelColor=27272a" alt="repo-language-count">
 
 ---
 
-📃 [Sobre](#-sobre)&nbsp;&nbsp;•&nbsp;&nbsp;
-🛠️ [Tecnologias](#-tecnologias)&nbsp;&nbsp;•&nbsp;&nbsp;
-✨ [Funcionalidades](#-funcionalidades)&nbsp;&nbsp;•&nbsp;&nbsp;
-🗄️ [Diagrama](#-diagrama-do-banco-de-dados)&nbsp;&nbsp;•&nbsp;&nbsp;
-🚀 [Como rodar](#-como-rodar)&nbsp;&nbsp;•&nbsp;&nbsp;
-📖 [Documentação](#-documentação-da-api)
+📃 [About](#-about)&nbsp;&nbsp;•&nbsp;&nbsp;
+🛠️ [Technologies](#-technologies)&nbsp;&nbsp;•&nbsp;&nbsp;
+✨ [Features](#-features)&nbsp;&nbsp;•&nbsp;&nbsp;
+🗄️ [Database Diagram](#-database-diagram)&nbsp;&nbsp;•&nbsp;&nbsp;
+🚀 [Getting Started](#-getting-started)&nbsp;&nbsp;•&nbsp;&nbsp;
+📖 [API Documentation](#-api-documentation)
 
 </div>
 
 ---
 
-## 📃 Sobre
+## 📃 About
 
-O **GymFlow** é uma API REST para gerenciamento de academias, construída com **Spring Boot** e **Spring Security**. Por meio dela é possível cadastrar alunos, criar treinos personalizados, gerenciar exercícios por grupo muscular e registrar avaliações físicas. A API conta com autenticação via **JWT**, controle de acesso por perfil e documentação interativa gerada pelo **Swagger**.
-
----
-
-## 🛠️ Tecnologias
-
-- ☕ **[Java 17](https://www.oracle.com/java/)** — Linguagem principal da aplicação.
-- 🌱 **[Spring Boot](https://spring.io/projects/spring-boot)** — Framework para criação de aplicações Java modernas.
-- 🔐 **[Spring Security](https://spring.io/projects/spring-security)** — Autenticação e controle de acesso.
-- 🗃️ **[Spring Data JPA](https://spring.io/projects/spring-data-jpa)** — Abstração de acesso a dados com Hibernate.
-- 🐬 **[MySQL](https://www.mysql.com/)** — Banco de dados relacional utilizado em produção.
-- 🐳 **[Docker](https://www.docker.com/)** — Containerização do banco de dados para ambiente reproduzível.
-- 📖 **[SpringDoc OpenAPI](https://springdoc.org/)** — Documentação interativa da API via Swagger UI.
-- 🔑 **[JJWT](https://github.com/jwtk/jjwt)** — Geração e validação de tokens JWT.
-- 🏗️ **[Lombok](https://projectlombok.org/)** — Redução de boilerplate com geração automática de código.
-- ✅ **[Bean Validation](https://beanvalidation.org/)** — Validação de dados de entrada.
+**SpringFit** is a REST API for gym management built with **Spring Boot** and **Spring Security**. It allows you to register students, create personalized workouts, manage exercises by muscle group, and record physical assessments. The API features **JWT** authentication, role-based access control, and interactive documentation powered by **Swagger**.
 
 ---
 
-## ✨ Funcionalidades
+## 🛠️ Technologies
 
-- [x] 🔐 Autenticação com JWT (registro e login)
-- [x] 👥 Controle de acesso por perfis (`ADMIN` e `STUDENT`)
-- [x] 🎓 Cadastro e remoção de alunos
-- [x] 🏋️ Criação de treinos personalizados por aluno
-- [x] 💪 Gerenciamento de exercícios por grupo muscular
-- [x] 📊 Registro e consulta de avaliações físicas
-- [x] 📄 Listagem de avaliações com paginação
-- [x] 🛡️ Alunos só visualizam sua própria avaliação física
-- [x] 📖 Documentação interativa com Swagger UI
+- ☕ **[Java 17](https://www.oracle.com/java/)** — Main programming language.
+- 🌱 **[Spring Boot](https://spring.io/projects/spring-boot)** — Framework for building modern Java applications.
+- 🔐 **[Spring Security](https://spring.io/projects/spring-security)** — Authentication and access control.
+- 🗃️ **[Spring Data JPA](https://spring.io/projects/spring-data-jpa)** — Data access abstraction with Hibernate.
+- 🐬 **[MySQL](https://www.mysql.com/)** — Relational database used in production.
+- 🐳 **[Docker](https://www.docker.com/)** — Database containerization for a reproducible environment.
+- 📖 **[SpringDoc OpenAPI](https://springdoc.org/)** — Interactive API documentation via Swagger UI.
+- 🔑 **[JJWT](https://github.com/jwtk/jjwt)** — JWT token generation and validation.
+- 🏗️ **[Lombok](https://projectlombok.org/)** — Boilerplate reduction through code generation.
+- ✅ **[Bean Validation](https://beanvalidation.org/)** — Input data validation.
 
 ---
 
-## 🗄️ Diagrama do Banco de Dados
+## ✨ Features
+
+- [x] 🔐 JWT authentication (register and login)
+- [x] 👥 Role-based access control (`ADMIN` and `STUDENT`)
+- [x] 🎓 Student registration and removal
+- [x] 🏋️ Personalized workout creation per student
+- [x] 💪 Exercise management by muscle group
+- [x] 📊 Physical assessment registration and retrieval
+- [x] 📄 Paginated assessment listing
+- [x] 🛡️ Students can only view their own physical assessment
+- [x] 📖 Interactive documentation with Swagger UI
+
+---
+
+## 🗄️ Database Diagram
 
 ```mermaid
 erDiagram
@@ -100,53 +100,53 @@ erDiagram
 
 ---
 
-## 🚀 Como rodar
+## 🚀 Getting Started
 
-### 📋 Pré-requisitos
+### 📋 Prerequisites
 
 - ☕ [Java 17+](https://www.oracle.com/java/)
 - 📦 [Maven](https://maven.apache.org/)
 - 🐳 [Docker](https://www.docker.com/)
 
-### 🔧 Instalação
+### 🔧 Installation
 
-1. Clone o repositório:
-
-    ```bash
-    git clone https://github.com/joschonarth/spring-boot-essentials.git
-    ```
-
-2. Acesse a pasta do projeto:
+1. Clone the repository:
 
     ```bash
-    cd spring-boot-essentials
+    git clone https://github.com/joschonarth/spring-fit.git
     ```
 
-3. Configure as variáveis de ambiente no arquivo `src/main/resources/application.yml`:
+2. Navigate to the project folder:
 
-```yaml
-datasource:
-    username: ${DB_USERNAME:docker}
-    password: ${DB_PASSWORD:docker}
+    ```bash
+    cd spring-fit
+    ```
 
-jwt:
-    key: ${JWT_KEY:sua_chave_secreta}
-    expiration: ${JWT_EXPIRATION:900000}
-```
+3. Set up environment variables in `src/main/resources/application.yml`:
 
-> 💡 Os valores após `:` são os padrões utilizados caso a variável de ambiente não esteja definida.
+    ```yaml
+    datasource:
+      username: ${DB_USERNAME:docker}
+      password: ${DB_PASSWORD:docker}
 
-### 🐳 Banco de dados
+    jwt:
+      key: ${JWT_KEY:your_secret_key}
+      expiration: ${JWT_EXPIRATION:900000}
+    ```
 
-Suba o container do MySQL com Docker:
+    > 💡 Values after `:` are the defaults used when the environment variable is not set.
+
+### 🐳 Database
+
+Start the MySQL container with Docker:
 
 ```bash
 docker compose up -d
 ```
 
-### 🗄️ Banco de dados alternativo (H2)
+### 🗄️ Alternative Database (H2)
 
-Caso prefira utilizar o banco em memória **H2** sem precisar do Docker, basta comentar o bloco do MySQL e descomentar o bloco do H2 no arquivo `src/main/resources/application.yml`:
+If you prefer to use the in-memory **H2** database without Docker, comment out the MySQL block and uncomment the H2 block in `src/main/resources/application.yml`:
 
 ```yaml
 # H2 In-Memory Database
@@ -161,39 +161,39 @@ h2:
     path: /h2-console
 ```
 
-Com o H2 ativo, o console estará disponível em **[http://localhost:8080/h2-console](http://localhost:8080/h2-console)**.
+With H2 enabled, the console will be available at **[http://localhost:8080/h2-console](http://localhost:8080/h2-console)**.
 
-### ▶️ Execução
+### ▶️ Running
 
-Inicie a aplicação com Maven:
+Start the application with Maven:
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-A API estará disponível em **[http://localhost:8080](http://localhost:8080)**.
+The API will be available at **[http://localhost:8080](http://localhost:8080)**.
 
 ---
 
-## 📖 Documentação da API
+## 📖 API Documentation
 
-Com a aplicação rodando, acesse a documentação interativa gerada pelo Swagger UI:
+With the application running, access the interactive documentation generated by Swagger UI:
 
 **[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)**
 
-> 💡 Para testar endpoints protegidos, clique em **Authorize** e informe o token JWT obtido no login com o prefixo `Bearer`.
+> 💡 To test protected endpoints, click **Authorize** and provide the JWT token obtained at login with the `Bearer` prefix.
 
 ---
 
-## ⭐ Apoie este Projeto
+## ⭐ Support this Project
 
-Se curtiu o projeto, deixe uma ⭐ aqui no GitHub — isso ajuda muito!
+If you liked this project, leave a ⭐ on GitHub — it means a lot!
 
 ---
 
 <div align="center">
 
-Feito com ♥ por **[João Otávio Schonarth](https://github.com/joschonarth)**
+Made with ♥ by **[João Otávio Schonarth](https://github.com/joschonarth)**
 
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/joschonarth)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/joschonarth)
