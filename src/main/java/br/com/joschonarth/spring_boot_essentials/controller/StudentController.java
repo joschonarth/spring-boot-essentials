@@ -2,6 +2,7 @@ package br.com.joschonarth.spring_boot_essentials.controller;
 
 import br.com.joschonarth.spring_boot_essentials.database.model.PhysicalAssessmentEntity;
 import br.com.joschonarth.spring_boot_essentials.dto.StudentDTO;
+import br.com.joschonarth.spring_boot_essentials.dto.StudentResponseDTO;
 import br.com.joschonarth.spring_boot_essentials.exception.BadRequestException;
 import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import br.com.joschonarth.spring_boot_essentials.service.StudentService;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Student", description = "Endpoints for student management")
@@ -65,5 +67,17 @@ public class StudentController {
             @Parameter(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
             @PathVariable UUID studentId) throws NotFoundException {
         studentService.deleteStudent(studentId);
+    }
+
+    @Operation(summary = "List all students")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Students retrieved successfully"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized")
+    })
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<StudentResponseDTO> getAllStudents() {
+        return studentService.getAllStudents();
     }
 }

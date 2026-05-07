@@ -7,6 +7,7 @@ import br.com.joschonarth.spring_boot_essentials.database.repository.IPhysicalAs
 import br.com.joschonarth.spring_boot_essentials.database.repository.IStudentRepository;
 import br.com.joschonarth.spring_boot_essentials.database.repository.IWorkoutRepository;
 import br.com.joschonarth.spring_boot_essentials.dto.StudentDTO;
+import br.com.joschonarth.spring_boot_essentials.dto.StudentResponseDTO;
 import br.com.joschonarth.spring_boot_essentials.exception.BadRequestException;
 import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -66,5 +67,16 @@ public class StudentService {
         studentRepository.deleteById(studentId);
 
         physicalAssessmentRepository.deleteById(student.getPhysicalAssessment().getId());
+    }
+
+    public List<StudentResponseDTO> getAllStudents() {
+        return studentRepository.findAll().stream()
+                .map(student -> StudentResponseDTO.builder()
+                    .id(student.getId())
+                    .name(student.getName())
+                    .email(student.getEmail())
+                    .birthDate(student.getBirthDate())
+                    .build())
+                .toList();
     }
 }
