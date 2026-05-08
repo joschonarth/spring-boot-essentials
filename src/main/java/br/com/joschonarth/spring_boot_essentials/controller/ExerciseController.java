@@ -1,6 +1,5 @@
 package br.com.joschonarth.spring_boot_essentials.controller;
 
-import br.com.joschonarth.spring_boot_essentials.database.model.ExerciseEntity;
 import br.com.joschonarth.spring_boot_essentials.dto.ExerciseDTO;
 import br.com.joschonarth.spring_boot_essentials.dto.ExerciseResponseDTO;
 import br.com.joschonarth.spring_boot_essentials.exception.NotFoundException;
@@ -34,7 +33,7 @@ public class ExerciseController {
     })
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ExerciseEntity> findAll() {
+    public List<ExerciseResponseDTO> findAll() {
         return exerciseService.findAll();
     }
 
@@ -59,7 +58,7 @@ public class ExerciseController {
     })
     @GetMapping("/group/{muscleGroup}")
     @ResponseStatus(HttpStatus.OK)
-    public List<ExerciseEntity> getExerciseByMuscleGroup(
+    public List<ExerciseResponseDTO> getExerciseByMuscleGroup(
             @Parameter(description = "Muscle group name", example = "CHEST")
             @PathVariable String muscleGroup) {
         return exerciseService.getExerciseByMuscleGroup(muscleGroup);

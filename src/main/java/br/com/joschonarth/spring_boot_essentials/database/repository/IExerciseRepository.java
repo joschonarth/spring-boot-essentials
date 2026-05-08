@@ -26,4 +26,6 @@ public interface IExerciseRepository extends JpaRepository<ExerciseEntity, UUID>
         WHERE UPPER(e.muscle_group) = UPPER(:muscleGroup)
     """)
     List<ExerciseEntity> findAllByMuscleGroupNative(@Param("muscleGroup") String muscleGroup);
+
+    List<ExerciseEntity> findByMuscleGroupIgnoreCase(String muscleGroup);
 }

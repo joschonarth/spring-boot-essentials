@@ -18,8 +18,10 @@ public class ExerciseService {
 
     private final IExerciseRepository exerciseRepository;
 
-    public List<ExerciseEntity> findAll() {
-        return exerciseRepository.findAll();
+    public List<ExerciseResponseDTO> findAll() {
+        return exerciseRepository.findAll().stream()
+                .map(this::toResponseDTO)
+                .toList();
     }
 
     public void save(ExerciseDTO exerciseDTO) {
@@ -29,22 +31,27 @@ public class ExerciseService {
                 .equipment(exerciseDTO.getEquipment())
                 .difficultyLevel(
                         exerciseDTO.getDifficultyLevel() != null
-                            ? exerciseDTO.getDifficultyLevel()
-                            : DifficultyLevel.BEGINNER
+                                ? exerciseDTO.getDifficultyLevel()
+                                : DifficultyLevel.BEGINNER
                 )
                 .build();
 
         exerciseRepository.save(exercise);
     }
 
-    public List<ExerciseEntity> getExerciseByMuscleGroup(String muscleGroup) {
-        return exerciseRepository.findAllByMuscleGroup(muscleGroup);
+    public ExerciseResponseDTO getExerciseById(UUID id) throws NotFoundException {
+        ExerciseEntity exercise = exerciseRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Exercise not found"));
+        return toResponseDTO(exercise);
     }
 
-    public ExerciseResponseDTO getExerciseById(UUID exerciseId) throws NotFoundException {
-        ExerciseEntity exercise = exerciseRepository.findById(exerciseId)
-                .orElseThrow(() -> new NotFoundException("Exercise not found"));
+    public List<ExerciseResponseDTO> getExerciseByMuscleGroup(String muscleGroup) {
+        return exerciseRepository.findByMuscleGroupIgnoreCase(muscleGroup).stream()
+                .map(this::toResponseDTO)
+                .toList();
+    }
 
+    private ExerciseResponseDTO toResponseDTO(ExerciseEntity exercise) {
         return ExerciseResponseDTO.builder()
                 .id(exercise.getId())
                 .name(exercise.getName())
