@@ -73,6 +73,20 @@ public class WorkoutService {
         return toResponseDTO(workout);
     }
 
+    public List<WorkoutResponseDTO> getAllWorkouts() {
+        StudentEntity authenticatedStudent = Objects.requireNonNull(
+                (StudentEntity) Objects.requireNonNull(
+                        SecurityContextHolder.getContext().getAuthentication(),
+                        "Authentication must not be null"
+                ).getPrincipal(),
+                "Authenticated student must not be null"
+        );
+        return workoutRepository.findAllByStudentId(authenticatedStudent.getId())
+                .stream()
+                .map(this::toResponseDTO)
+                .toList();
+    }
+
     private WorkoutResponseDTO toResponseDTO(WorkoutEntity workout) {
         List<ExerciseResponseDTO> exercises = workout.getExercises().stream()
                 .map(exercise -> ExerciseResponseDTO.builder()

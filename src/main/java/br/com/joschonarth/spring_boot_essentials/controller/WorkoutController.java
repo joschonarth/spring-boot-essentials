@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Workout", description = "Endpoints for workout management")
@@ -52,5 +53,16 @@ public class WorkoutController {
             @Parameter(description = "Workout ID", example = "123e4567-e89b-12d3-a456-426614174000")
             @PathVariable UUID workoutId) throws NotFoundException {
         return workoutService.getWorkoutById(workoutId);
+    }
+
+    @Operation(summary = "List all workouts from authenticated student")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Workouts retrieved successfully"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized")
+    })
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<WorkoutResponseDTO> getAllWorkouts() {
+        return workoutService.getAllWorkouts();
     }
 }
