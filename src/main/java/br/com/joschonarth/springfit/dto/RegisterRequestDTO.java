@@ -30,4 +30,7 @@ public class RegisterRequestDTO {
 
     @Schema(description = "User birth date", example = "2000-01-15")
     private LocalDate birthDate;
+
+    @Schema(description = "User phone number", example = "+55 11 99999-9999")
+    private String phone;
 }

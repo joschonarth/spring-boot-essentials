@@ -32,4 +32,7 @@ public class PhysicalAssessmentDTO {
     @Schema(description = "Body fat percentage", example = "18.5")
     @NotNull
     private BigDecimal bodyFatPercentage;
+
+    @Schema(description = "BMI (Body Mass Index) - calculated automatically", accessMode = Schema.AccessMode.READ_ONLY)
+    private BigDecimal bmi;
 }

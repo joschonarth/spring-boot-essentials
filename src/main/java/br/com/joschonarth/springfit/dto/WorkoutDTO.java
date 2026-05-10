@@ -29,6 +29,9 @@ public class WorkoutDTO {
     @Schema(description = "Workout objective", example = "Muscle hypertrophy")
     private String objective;
 
+    @Schema(description = "Workout description", example = "Focus on compound movements")
+    private String description;
+
     @Schema(description = "List of exercise IDs", example = "[\"123e4567-e89b-12d3-a456-426614174000\"]")
     @NotEmpty
     private List<UUID> exerciseId;

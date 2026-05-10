@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,8 +26,17 @@ public class WorkoutResponseDTO {
     @Schema(description = "Workout objective", example = "Muscle hypertrophy")
     private String objective;
 
+    @Schema(description = "Workout description", example = "Focus on compound movements")
+    private String description;
+
     @Schema(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
     private UUID studentId;
+
+    @Schema(description = "Creation date")
+    private LocalDateTime createdAt;
+
+    @Schema(description = "Last update date")
+    private LocalDateTime updatedAt;
 
     @Schema(description = "List of exercises")
     private List<ExerciseResponseDTO> exercises;

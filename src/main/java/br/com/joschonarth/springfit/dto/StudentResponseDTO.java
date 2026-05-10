@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -27,4 +28,10 @@ public class StudentResponseDTO {
 
     @Schema(description = "Student birth date", example = "2000-01-15")
     private LocalDate birthDate;
+
+    @Schema(description = "Student phone number", example = "+55 11 99999-9999")
+    private String phone;
+
+    @Schema(description = "Registration date")
+    private LocalDateTime createdAt;
 }

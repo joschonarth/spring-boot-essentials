@@ -25,6 +25,9 @@ public class ExerciseDTO {
     @Schema(description = "Equipment needed", example = "Barbell")
     private String equipment;
 
+    @Schema(description = "Exercise description", example = "Lie on a flat bench and push the barbell upward")
+    private String description;
+
     @Schema(description = "Difficulty level", example = "INTERMEDIATE")
     private DifficultyLevel difficultyLevel;
 }
