@@ -70,6 +70,10 @@ public class WorkoutService {
         WorkoutEntity workout = workoutRepository.findByIdAndStudentId(workoutId, authenticatedStudent.getId())
                 .orElseThrow(() -> new NotFoundException("Workout not found"));
 
+        return toResponseDTO(workout);
+    }
+
+    private WorkoutResponseDTO toResponseDTO(WorkoutEntity workout) {
         List<ExerciseResponseDTO> exercises = workout.getExercises().stream()
                 .map(exercise -> ExerciseResponseDTO.builder()
                         .id(exercise.getId())
