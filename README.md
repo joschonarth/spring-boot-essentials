@@ -61,32 +61,41 @@
 ```mermaid
 erDiagram
     student {
-        int id PK
+        uuid id PK
         string name
         string email
+        string password
+        string phone
         date birth_date
         int assessment_id FK
+        datetime created_at
     }
     physical_assessment {
-        int id PK
+        uuid id PK
         float weight
         float height
         float body_fat_percentage
+        float bmi
         datetime created_at
+        datetime updated_at
     }
     workout {
-        int id PK
+        uuid id PK
         string name
         string objective
-        int student_id FK
+        string description
+        uuid student_id FK
         datetime created_at
+        datetime updated_at
     }
     exercise {
-        int id PK
+        uuid id PK
         string name
         string muscle_group
         string equipment
+        string description
         string difficulty_level
+        datetime created_at
     }
     workout_exercise {
         int workout_id PK, FK
