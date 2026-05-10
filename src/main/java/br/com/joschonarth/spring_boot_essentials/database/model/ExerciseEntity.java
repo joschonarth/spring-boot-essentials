@@ -3,7 +3,9 @@ package br.com.joschonarth.spring_boot_essentials.database.model;
 import br.com.joschonarth.spring_boot_essentials.enums.DifficultyLevel;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -28,7 +30,14 @@ public class ExerciseEntity {
     @Column()
     private String equipment;
 
+    @Column()
+    private String description;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "difficulty_level", nullable = false)
     private DifficultyLevel difficultyLevel;
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 }

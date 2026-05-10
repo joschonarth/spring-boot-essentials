@@ -3,6 +3,7 @@ package br.com.joschonarth.spring_boot_essentials.database.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -28,9 +29,16 @@ public class WorkoutEntity {
     @Column()
     private String objective;
 
+    @Column()
+    private String description;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     @ManyToOne()
     @JoinColumn(name = "student_id")
