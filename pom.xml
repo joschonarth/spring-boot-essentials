@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.joschonarth</groupId>
-	<artifactId>spring-boot-essentials</artifactId>
+	<artifactId>spring-fit</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>spring-fit</name>
+	<description>REST API for gym management</description>
 	<url/>
 	<licenses>
 		<license/>

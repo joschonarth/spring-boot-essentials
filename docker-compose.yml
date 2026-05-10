@@ -1,11 +1,11 @@
 services:
   mysql:
     image: mysql:8
-    container_name: mysql_gym
+    container_name: mysql_springfit
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: gym
+      MYSQL_DATABASE: springfit
       MYSQL_USER: docker
       MYSQL_PASSWORD: docker
     ports:
