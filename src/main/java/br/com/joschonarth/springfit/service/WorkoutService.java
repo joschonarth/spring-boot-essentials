@@ -49,6 +49,7 @@ public class WorkoutService {
         workout = WorkoutEntity.builder()
                 .name(workoutDTO.getName())
                 .objective(workoutDTO.getObjective())
+                .description(workoutDTO.getDescription())
                 .student(student)
                 .exercises(exercises)
                 .build();
@@ -94,7 +95,9 @@ public class WorkoutService {
                         .name(exercise.getName())
                         .muscleGroup(exercise.getMuscleGroup())
                         .equipment(exercise.getEquipment())
+                        .description(exercise.getDescription())
                         .difficultyLevel(exercise.getDifficultyLevel())
+                        .createdAt(exercise.getCreatedAt())
                         .build())
                 .toList();
 
@@ -102,7 +105,10 @@ public class WorkoutService {
                 .id(workout.getId())
                 .name(workout.getName())
                 .objective(workout.getObjective())
+                .description(workout.getDescription())
                 .studentId(workout.getStudent().getId())
+                .createdAt(workout.getCreatedAt())
+                .updatedAt(workout.getUpdatedAt())
                 .exercises(exercises)
                 .build();
     }
