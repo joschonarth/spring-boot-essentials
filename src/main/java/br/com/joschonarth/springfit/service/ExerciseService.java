@@ -29,6 +29,7 @@ public class ExerciseService {
                 .name(exerciseDTO.getName())
                 .muscleGroup(exerciseDTO.getMuscleGroup())
                 .equipment(exerciseDTO.getEquipment())
+                .description(exerciseDTO.getDescription())
                 .difficultyLevel(
                         exerciseDTO.getDifficultyLevel() != null
                                 ? exerciseDTO.getDifficultyLevel()
@@ -57,7 +58,9 @@ public class ExerciseService {
                 .name(exercise.getName())
                 .muscleGroup(exercise.getMuscleGroup())
                 .equipment(exercise.getEquipment())
+                .description(exercise.getDescription())
                 .difficultyLevel(exercise.getDifficultyLevel())
+                .createdAt(exercise.getCreatedAt())
                 .build();
     }
 }
