@@ -54,12 +54,7 @@ public class StudentService {
 
     public List<StudentResponseDTO> getAllStudents() {
         return studentRepository.findAll().stream()
-                .map(student -> StudentResponseDTO.builder()
-                    .id(student.getId())
-                    .name(student.getName())
-                    .email(student.getEmail())
-                    .birthDate(student.getBirthDate())
-                    .build())
+                .map(this::toResponseDTO)
                 .toList();
     }
 
@@ -67,11 +62,17 @@ public class StudentService {
         StudentEntity student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NotFoundException("Student not found"));
 
+        return toResponseDTO(student);
+    }
+
+    private StudentResponseDTO toResponseDTO(StudentEntity student) {
         return StudentResponseDTO.builder()
                 .id(student.getId())
                 .name(student.getName())
                 .email(student.getEmail())
                 .birthDate(student.getBirthDate())
+                .phone(student.getPhone())
+                .createdAt(student.getCreatedAt())
                 .build();
     }
 }
