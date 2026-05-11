@@ -7,6 +7,7 @@ import br.com.joschonarth.springfit.database.repository.IPhysicalAssessmentRepos
 import br.com.joschonarth.springfit.database.repository.IStudentRepository;
 import br.com.joschonarth.springfit.database.repository.IWorkoutRepository;
 import br.com.joschonarth.springfit.dto.StudentResponseDTO;
+import br.com.joschonarth.springfit.dto.UpdateStudentDTO;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,17 @@ public class StudentService {
                 .orElseThrow(() -> new NotFoundException("Student not found"));
 
         return toResponseDTO(student);
+    }
+
+    public StudentResponseDTO updateStudent(UUID studentId, UpdateStudentDTO dto) throws NotFoundException {
+        StudentEntity student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new NotFoundException("Student not found"));
+
+        if (dto.getName() != null) student.setName(dto.getName());
+        if (dto.getPhone() != null) student.setPhone(dto.getPhone());
+        if (dto.getBirthDate() != null) student.setBirthDate(dto.getBirthDate());
+
+        return toResponseDTO(studentRepository.save(student));
     }
 
     private StudentResponseDTO toResponseDTO(StudentEntity student) {

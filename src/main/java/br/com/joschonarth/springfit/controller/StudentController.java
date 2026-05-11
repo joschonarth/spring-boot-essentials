@@ -2,6 +2,7 @@ package br.com.joschonarth.springfit.controller;
 
 import br.com.joschonarth.springfit.database.model.PhysicalAssessmentEntity;
 import br.com.joschonarth.springfit.dto.StudentResponseDTO;
+import br.com.joschonarth.springfit.dto.UpdateStudentDTO;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import br.com.joschonarth.springfit.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -80,5 +81,21 @@ public class StudentController {
             @Parameter(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
             @PathVariable UUID studentId) throws NotFoundException {
         return studentService.getStudentById(studentId);
+    }
+
+    @Operation(summary = "Update student data", description = "Students can only update their own data. ADMIN can update any student.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Student updated successfully"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden - cannot update another student's data"),
+            @ApiResponse(responseCode = "404", description = "Student not found")
+    })
+    @PreAuthorize("#studentId == authentication.principal.id or hasRole('ADMIN')")
+    @PutMapping("{studentId}")
+    public StudentResponseDTO updateStudent(
+            @Parameter(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
+            @PathVariable UUID studentId,
+            @RequestBody UpdateStudentDTO dto) throws NotFoundException {
+        return studentService.updateStudent(studentId, dto);
     }
 }
