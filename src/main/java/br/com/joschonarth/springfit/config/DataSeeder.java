@@ -48,6 +48,7 @@ public class DataSeeder implements CommandLineRunner {
                         .email("admin@example.com")
                         .password(passwordEncoder.encode("admin123"))
                         .birthDate(LocalDate.of(1990, 1, 1))
+                        .phone("(11) 99999-0001")
                         .roles(Set.of(adminRole))
                         .build(),
                 StudentEntity.builder()
@@ -55,16 +56,51 @@ public class DataSeeder implements CommandLineRunner {
                         .email("johndoe@example.com")
                         .password(passwordEncoder.encode("john123"))
                         .birthDate(LocalDate.of(2000, 6, 15))
+                        .phone("(11) 99999-0002")
                         .roles(Set.of(studentRole))
                         .build()
         ));
 
         exerciseRepository.saveAll(List.of(
-                ExerciseEntity.builder().name("Bench Press").muscleGroup("CHEST").equipment("Barbell").difficultyLevel(DifficultyLevel.INTERMEDIATE).build(),
-                ExerciseEntity.builder().name("Pull Up").muscleGroup("BACK").equipment("Bar").difficultyLevel(DifficultyLevel.ADVANCED).build(),
-                ExerciseEntity.builder().name("Squat").muscleGroup("LEGS").equipment("Barbell").difficultyLevel(DifficultyLevel.INTERMEDIATE).build(),
-                ExerciseEntity.builder().name("Shoulder Press").muscleGroup("SHOULDERS").equipment("Dumbbell").difficultyLevel(DifficultyLevel.BEGINNER).build(),
-                ExerciseEntity.builder().name("Bicep Curl").muscleGroup("ARMS").equipment("Dumbbell").difficultyLevel(DifficultyLevel.BEGINNER).build()
+                ExerciseEntity.builder()
+                        .name("Bench Press")
+                        .muscleGroup("CHEST")
+                        .equipment("Barbell")
+                        .description("Compound chest exercise focused on strength and hypertrophy.")
+                        .difficultyLevel(DifficultyLevel.INTERMEDIATE)
+                        .build(),
+
+                ExerciseEntity.builder()
+                        .name("Pull Up")
+                        .muscleGroup("BACK")
+                        .equipment("Bar")
+                        .description("Bodyweight exercise that strengthens the back and biceps.")
+                        .difficultyLevel(DifficultyLevel.ADVANCED)
+                        .build(),
+
+                ExerciseEntity.builder()
+                        .name("Squat")
+                        .muscleGroup("LEGS")
+                        .equipment("Barbell")
+                        .description("Fundamental lower body exercise targeting legs and glutes.")
+                        .difficultyLevel(DifficultyLevel.INTERMEDIATE)
+                        .build(),
+
+                ExerciseEntity.builder()
+                        .name("Shoulder Press")
+                        .muscleGroup("SHOULDERS")
+                        .equipment("Dumbbell")
+                        .description("Upper body exercise focused on shoulder development.")
+                        .difficultyLevel(DifficultyLevel.BEGINNER)
+                        .build(),
+
+                ExerciseEntity.builder()
+                        .name("Bicep Curl")
+                        .muscleGroup("ARMS")
+                        .equipment("Dumbbell")
+                        .description("Isolation exercise designed to strengthen the biceps.")
+                        .difficultyLevel(DifficultyLevel.BEGINNER)
+                        .build()
         ));
     }
 }
