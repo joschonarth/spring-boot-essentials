@@ -33,6 +33,7 @@
 - 🌱 **[Spring Boot](https://spring.io/projects/spring-boot)** — Framework for building modern Java applications.
 - 🔐 **[Spring Security](https://spring.io/projects/spring-security)** — Authentication and access control.
 - 🗃️ **[Spring Data JPA](https://spring.io/projects/spring-data-jpa)** — Data access abstraction with Hibernate.
+- 📦 **[Maven](https://maven.apache.org/)** — Dependency management and project build automation.
 - 🐬 **[MySQL](https://www.mysql.com/)** — Relational database used in production.
 - 🐳 **[Docker](https://www.docker.com/)** — Database containerization for a reproducible environment.
 - 📖 **[SpringDoc OpenAPI](https://springdoc.org/)** — Interactive API documentation via Swagger UI.
