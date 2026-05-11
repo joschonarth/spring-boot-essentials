@@ -1,5 +1,6 @@
 package br.com.joschonarth.springfit.database.model;
 
+import br.com.joschonarth.springfit.enums.BmiClassification;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,6 +36,10 @@ public class PhysicalAssessmentEntity {
 
     @Column(nullable = false)
     private BigDecimal bmi;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "bmi_classification")
+    private BmiClassification bmiClassification;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

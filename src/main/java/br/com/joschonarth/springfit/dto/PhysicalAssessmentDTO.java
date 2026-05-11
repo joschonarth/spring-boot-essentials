@@ -1,5 +1,6 @@
 package br.com.joschonarth.springfit.dto;
 
+import br.com.joschonarth.springfit.enums.BmiClassification;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -35,4 +36,7 @@ public class PhysicalAssessmentDTO {
 
     @Schema(description = "BMI (Body Mass Index) - calculated automatically", accessMode = Schema.AccessMode.READ_ONLY)
     private BigDecimal bmi;
+
+    @Schema(description = "BMI classification - calculated automatically", accessMode = Schema.AccessMode.READ_ONLY)
+    private BmiClassification bmiClassification;
 }

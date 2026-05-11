@@ -6,6 +6,7 @@ import br.com.joschonarth.springfit.database.repository.IPhysicalAssessmentRepos
 import br.com.joschonarth.springfit.database.repository.IStudentRepository;
 import br.com.joschonarth.springfit.dto.PhysicalAssessmentDTO;
 import br.com.joschonarth.springfit.dto.PhysicalAssessmentProjection;
+import br.com.joschonarth.springfit.enums.BmiClassification;
 import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,7 @@ public class PhysicalAssessmentService {
                 .height(dto.getHeight())
                 .bodyFatPercentage(dto.getBodyFatPercentage())
                 .bmi(bmi)
+                .bmiClassification(calculateBmiClassification(bmi))
                 .build();
 
         student.setPhysicalAssessment(physicalAssessment);
@@ -52,5 +54,17 @@ public class PhysicalAssessmentService {
 
     public Page<PhysicalAssessmentProjection> getAllAssessmentsPageable(Integer page, Integer size) {
         return physicalAssessmentRepository.getAllAssessmentsPage(PageRequest.of(page, size));
+    }
+
+    private BmiClassification calculateBmiClassification(BigDecimal bmi) {
+        if (bmi.compareTo(new BigDecimal("18.5")) < 0) {
+            return BmiClassification.UNDERWEIGHT;
+        } else if (bmi.compareTo(new BigDecimal("24.9")) <= 0) {
+            return BmiClassification.NORMAL;
+        } else if (bmi.compareTo(new BigDecimal("29.9")) <= 0) {
+            return BmiClassification.OVERWEIGHT;
+        } else {
+            return BmiClassification.OBESE;
+        }
     }
 }

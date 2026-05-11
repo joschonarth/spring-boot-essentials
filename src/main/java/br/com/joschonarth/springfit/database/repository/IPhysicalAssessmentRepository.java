@@ -20,6 +20,7 @@ public interface IPhysicalAssessmentRepository extends JpaRepository<PhysicalAss
                pa.height AS height,
                pa.bodyFatPercentage AS bodyFatPercentage,
                pa.bmi AS bmi,
+               pa.bmiClassification AS bmiClassification,
                pa.createdAt AS createdAt,
                pa.updatedAt AS updatedAtQ
         FROM PhysicalAssessmentEntity pa
@@ -35,6 +36,7 @@ public interface IPhysicalAssessmentRepository extends JpaRepository<PhysicalAss
                pa.height AS height,
                pa.bodyFatPercentage AS bodyFatPercentage,
                pa.bmi AS bmi,
+               pa.bmiClassification AS bmiClassification,
                pa.createdAt AS createdAt,
                pa.updatedAt AS updatedAt
         FROM PhysicalAssessmentEntity pa
