@@ -2,6 +2,7 @@ package br.com.joschonarth.springfit.controller;
 
 import br.com.joschonarth.springfit.dto.ExerciseDTO;
 import br.com.joschonarth.springfit.dto.ExerciseResponseDTO;
+import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import br.com.joschonarth.springfit.service.ExerciseService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -78,4 +79,19 @@ public class ExerciseController {
         return exerciseService.getExerciseById(exerciseId);
     }
 
+    @Operation(summary = "Remove an exercise")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Exercise removed successfully"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden - only ADMIN can remove exercises"),
+            @ApiResponse(responseCode = "404", description = "Exercise not found")
+    })
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("{exerciseId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteExercise(
+            @Parameter(description = "Exercise ID", example = "123e4567-e89b-12d3-a456-426614174000")
+            @PathVariable UUID exerciseId) throws NotFoundException, BadRequestException {
+        exerciseService.deleteExercise(exerciseId);
+    }
 }

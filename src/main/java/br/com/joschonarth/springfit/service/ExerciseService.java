@@ -5,6 +5,7 @@ import br.com.joschonarth.springfit.database.repository.IExerciseRepository;
 import br.com.joschonarth.springfit.dto.ExerciseDTO;
 import br.com.joschonarth.springfit.dto.ExerciseResponseDTO;
 import br.com.joschonarth.springfit.enums.DifficultyLevel;
+import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,17 @@ public class ExerciseService {
         return exerciseRepository.findByMuscleGroupIgnoreCase(muscleGroup).stream()
                 .map(this::toResponseDTO)
                 .toList();
+    }
+
+    public void deleteExercise(UUID id) throws NotFoundException, BadRequestException {
+        ExerciseEntity exercise = exerciseRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Exercise not found"));
+
+        if (!exercise.getWorkouts().isEmpty()) {
+            throw new BadRequestException("Cannot delete exercise because it is associated with one or more workouts");
+        }
+
+        exerciseRepository.deleteById(id);
     }
 
     private ExerciseResponseDTO toResponseDTO(ExerciseEntity exercise) {
