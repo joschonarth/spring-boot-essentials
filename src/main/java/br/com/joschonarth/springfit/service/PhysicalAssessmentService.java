@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Service
@@ -22,19 +24,22 @@ public class PhysicalAssessmentService {
     private final IStudentRepository studentRepository;
     private final IPhysicalAssessmentRepository physicalAssessmentRepository;
 
-    public void createPhysicalAssessment(PhysicalAssessmentDTO physicalAssessmentDTO) throws NotFoundException, BadRequestException {
-        StudentEntity student = studentRepository.findById(physicalAssessmentDTO.getStudentId())
+    public void createPhysicalAssessment(PhysicalAssessmentDTO dto) throws NotFoundException, BadRequestException {
+        StudentEntity student = studentRepository.findById(dto.getStudentId())
                 .orElseThrow(() -> new NotFoundException("Student not found"));
 
-        PhysicalAssessmentEntity physicalAssessment = student.getPhysicalAssessment();
-        if (physicalAssessment != null) {
+        if (student.getPhysicalAssessment() != null) {
             throw new BadRequestException("Physical assessment already registered for this student");
         }
 
-        physicalAssessment = PhysicalAssessmentEntity.builder()
-                .weight(physicalAssessmentDTO.getWeight())
-                .height(physicalAssessmentDTO.getHeight())
-                .bodyFatPercentage(physicalAssessmentDTO.getBodyFatPercentage())
+        BigDecimal bmi = dto.getWeight()
+                .divide(dto.getHeight().multiply(dto.getHeight()), 2, RoundingMode.HALF_UP);
+
+        PhysicalAssessmentEntity physicalAssessment = PhysicalAssessmentEntity.builder()
+                .weight(dto.getWeight())
+                .height(dto.getHeight())
+                .bodyFatPercentage(dto.getBodyFatPercentage())
+                .bmi(bmi)
                 .build();
 
         student.setPhysicalAssessment(physicalAssessment);

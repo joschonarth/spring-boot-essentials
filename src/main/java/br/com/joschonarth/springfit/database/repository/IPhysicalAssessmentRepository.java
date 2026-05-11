@@ -18,7 +18,10 @@ public interface IPhysicalAssessmentRepository extends JpaRepository<PhysicalAss
                pa.id AS assessmentId,
                pa.weight AS weight,
                pa.height AS height,
-               pa.bodyFatPercentage AS bodyFatPercentage
+               pa.bodyFatPercentage AS bodyFatPercentage,
+               pa.bmi AS bmi,
+               pa.createdAt AS createdAt,
+               pa.updatedAt AS updatedAtQ
         FROM PhysicalAssessmentEntity pa
         JOIN StudentEntity s ON s.physicalAssessment = pa
         """)
@@ -30,7 +33,10 @@ public interface IPhysicalAssessmentRepository extends JpaRepository<PhysicalAss
                pa.id AS assessmentId,
                pa.weight AS weight,
                pa.height AS height,
-               pa.bodyFatPercentage AS bodyFatPercentage
+               pa.bodyFatPercentage AS bodyFatPercentage,
+               pa.bmi AS bmi,
+               pa.createdAt AS createdAt,
+               pa.updatedAt AS updatedAt
         FROM PhysicalAssessmentEntity pa
         JOIN StudentEntity s ON s.physicalAssessment = pa
         """,
