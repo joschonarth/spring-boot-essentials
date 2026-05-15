@@ -4,8 +4,8 @@ import br.com.joschonarth.springfit.database.model.PhysicalAssessmentEntity;
 import br.com.joschonarth.springfit.database.model.StudentEntity;
 import br.com.joschonarth.springfit.database.repository.IPhysicalAssessmentRepository;
 import br.com.joschonarth.springfit.database.repository.IStudentRepository;
-import br.com.joschonarth.springfit.dto.PhysicalAssessmentDTO;
-import br.com.joschonarth.springfit.dto.PhysicalAssessmentProjection;
+import br.com.joschonarth.springfit.dto.request.PhysicalAssessmentRequestDTO;
+import br.com.joschonarth.springfit.dto.projection.PhysicalAssessmentProjection;
 import br.com.joschonarth.springfit.enums.BmiClassification;
 import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
@@ -25,7 +25,7 @@ public class PhysicalAssessmentService {
     private final IStudentRepository studentRepository;
     private final IPhysicalAssessmentRepository physicalAssessmentRepository;
 
-    public void createPhysicalAssessment(PhysicalAssessmentDTO dto) throws NotFoundException, BadRequestException {
+    public void createPhysicalAssessment(PhysicalAssessmentRequestDTO dto) throws NotFoundException, BadRequestException {
         StudentEntity student = studentRepository.findById(dto.getStudentId())
                 .orElseThrow(() -> new NotFoundException("Student not found"));
 

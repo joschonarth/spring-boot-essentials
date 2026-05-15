@@ -1,4 +1,4 @@
-package br.com.joschonarth.springfit.dto;
+package br.com.joschonarth.springfit.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @ToString
 @Builder
 @Schema(description = "Request body for creating a workout")
-public class WorkoutDTO {
+public class WorkoutRequestDTO {
 
     @Schema(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
     @NotNull

@@ -1,7 +1,7 @@
 package br.com.joschonarth.springfit.database.repository;
 
 import br.com.joschonarth.springfit.database.model.PhysicalAssessmentEntity;
-import br.com.joschonarth.springfit.dto.PhysicalAssessmentProjection;
+import br.com.joschonarth.springfit.dto.projection.PhysicalAssessmentProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

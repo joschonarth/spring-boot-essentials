@@ -6,9 +6,9 @@ import br.com.joschonarth.springfit.database.model.WorkoutEntity;
 import br.com.joschonarth.springfit.database.repository.IExerciseRepository;
 import br.com.joschonarth.springfit.database.repository.IStudentRepository;
 import br.com.joschonarth.springfit.database.repository.IWorkoutRepository;
-import br.com.joschonarth.springfit.dto.ExerciseResponseDTO;
-import br.com.joschonarth.springfit.dto.WorkoutDTO;
-import br.com.joschonarth.springfit.dto.WorkoutResponseDTO;
+import br.com.joschonarth.springfit.dto.response.ExerciseResponseDTO;
+import br.com.joschonarth.springfit.dto.request.WorkoutRequestDTO;
+import br.com.joschonarth.springfit.dto.response.WorkoutResponseDTO;
 import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -26,20 +26,20 @@ public class WorkoutService {
     private final IExerciseRepository exerciseRepository;
     private final IWorkoutRepository workoutRepository;
 
-    public void createWorkout(WorkoutDTO workoutDTO) throws NotFoundException, BadRequestException {
+    public void createWorkout(WorkoutRequestDTO workoutRequestDTO) throws NotFoundException, BadRequestException {
         Set<ExerciseEntity> exercises = new HashSet<>();
 
-        StudentEntity student = studentRepository.findById(workoutDTO.getStudentId())
+        StudentEntity student = studentRepository.findById(workoutRequestDTO.getStudentId())
                 .orElseThrow(() -> new NotFoundException("Student not found"));
 
-        WorkoutEntity workout = workoutRepository.findByNameAndStudentId(workoutDTO.getName(), workoutDTO.getStudentId())
+        WorkoutEntity workout = workoutRepository.findByNameAndStudentId(workoutRequestDTO.getName(), workoutRequestDTO.getStudentId())
                 .orElse(null);
 
         if (workout != null) {
             throw new BadRequestException("Already exists a workout with this name for this student");
         }
 
-        for (UUID exerciseId : workoutDTO.getExerciseId()) {
+        for (UUID exerciseId : workoutRequestDTO.getExerciseId()) {
             ExerciseEntity exercise = exerciseRepository.findById(exerciseId)
                     .orElseThrow(() -> new NotFoundException(String.format("Exercise %s not found", exerciseId)));
 
@@ -47,9 +47,9 @@ public class WorkoutService {
         }
 
         workout = WorkoutEntity.builder()
-                .name(workoutDTO.getName())
-                .objective(workoutDTO.getObjective())
-                .description(workoutDTO.getDescription())
+                .name(workoutRequestDTO.getName())
+                .objective(workoutRequestDTO.getObjective())
+                .description(workoutRequestDTO.getDescription())
                 .student(student)
                 .exercises(exercises)
                 .build();

@@ -1,4 +1,4 @@
-package br.com.joschonarth.springfit.dto;
+package br.com.joschonarth.springfit.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

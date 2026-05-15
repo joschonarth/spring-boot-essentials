@@ -1,4 +1,4 @@
-package br.com.joschonarth.springfit.dto;
+package br.com.joschonarth.springfit.dto.projection;
 
 import br.com.joschonarth.springfit.enums.BmiClassification;
 

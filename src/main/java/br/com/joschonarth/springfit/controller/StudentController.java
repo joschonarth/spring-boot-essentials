@@ -1,8 +1,8 @@
 package br.com.joschonarth.springfit.controller;
 
 import br.com.joschonarth.springfit.database.model.PhysicalAssessmentEntity;
-import br.com.joschonarth.springfit.dto.StudentResponseDTO;
-import br.com.joschonarth.springfit.dto.UpdateStudentDTO;
+import br.com.joschonarth.springfit.dto.response.StudentResponseDTO;
+import br.com.joschonarth.springfit.dto.request.UpdateStudentRequestDTO;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import br.com.joschonarth.springfit.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -95,7 +95,7 @@ public class StudentController {
     public StudentResponseDTO updateStudent(
             @Parameter(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
             @PathVariable UUID studentId,
-            @RequestBody UpdateStudentDTO dto) throws NotFoundException {
+            @RequestBody UpdateStudentRequestDTO dto) throws NotFoundException {
         return studentService.updateStudent(studentId, dto);
     }
 }

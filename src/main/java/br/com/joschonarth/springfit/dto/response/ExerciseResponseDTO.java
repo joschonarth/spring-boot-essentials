@@ -1,4 +1,4 @@
-package br.com.joschonarth.springfit.dto;
+package br.com.joschonarth.springfit.dto.response;
 
 import br.com.joschonarth.springfit.enums.DifficultyLevel;
 import io.swagger.v3.oas.annotations.media.Schema;

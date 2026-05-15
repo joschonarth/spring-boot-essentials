@@ -1,7 +1,7 @@
 package br.com.joschonarth.springfit.controller;
 
-import br.com.joschonarth.springfit.dto.PhysicalAssessmentDTO;
-import br.com.joschonarth.springfit.dto.PhysicalAssessmentProjection;
+import br.com.joschonarth.springfit.dto.request.PhysicalAssessmentRequestDTO;
+import br.com.joschonarth.springfit.dto.projection.PhysicalAssessmentProjection;
 import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import br.com.joschonarth.springfit.service.PhysicalAssessmentService;
@@ -36,8 +36,8 @@ public class PhysicalAssessmentController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPhysicalAssessment(@Valid @RequestBody PhysicalAssessmentDTO physicalAssessmentDTO) throws NotFoundException, BadRequestException {
-        physicalAssessmentService.createPhysicalAssessment(physicalAssessmentDTO);
+    public void createPhysicalAssessment(@Valid @RequestBody PhysicalAssessmentRequestDTO physicalAssessmentRequestDTO) throws NotFoundException, BadRequestException {
+        physicalAssessmentService.createPhysicalAssessment(physicalAssessmentRequestDTO);
     }
 
     @Operation(summary = "List all physical assessments")

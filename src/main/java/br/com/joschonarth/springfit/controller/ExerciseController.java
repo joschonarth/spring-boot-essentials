@@ -1,8 +1,8 @@
 package br.com.joschonarth.springfit.controller;
 
-import br.com.joschonarth.springfit.dto.ExerciseDTO;
-import br.com.joschonarth.springfit.dto.ExerciseResponseDTO;
-import br.com.joschonarth.springfit.dto.UpdateExerciseDTO;
+import br.com.joschonarth.springfit.dto.request.ExerciseRequestDTO;
+import br.com.joschonarth.springfit.dto.response.ExerciseResponseDTO;
+import br.com.joschonarth.springfit.dto.request.UpdateExerciseRequestDTO;
 import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import br.com.joschonarth.springfit.service.ExerciseService;
@@ -49,8 +49,8 @@ public class ExerciseController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveExercise(@Valid @RequestBody ExerciseDTO exerciseDTO) {
-        exerciseService.save(exerciseDTO);
+    public void saveExercise(@Valid @RequestBody ExerciseRequestDTO exerciseRequestDTO) {
+        exerciseService.save(exerciseRequestDTO);
     }
 
     @Operation(summary = "List exercises by muscle group")
@@ -93,7 +93,7 @@ public class ExerciseController {
     public ExerciseResponseDTO updateExercise(
             @Parameter(description = "Exercise ID", example = "123e4567-e89b-12d3-a456-426614174000")
             @PathVariable UUID exerciseId,
-            @RequestBody UpdateExerciseDTO dto) throws NotFoundException {
+            @RequestBody UpdateExerciseRequestDTO dto) throws NotFoundException {
         return exerciseService.updateExercise(exerciseId, dto);
     }
 

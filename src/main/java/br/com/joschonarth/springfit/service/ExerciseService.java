@@ -2,9 +2,9 @@ package br.com.joschonarth.springfit.service;
 
 import br.com.joschonarth.springfit.database.model.ExerciseEntity;
 import br.com.joschonarth.springfit.database.repository.IExerciseRepository;
-import br.com.joschonarth.springfit.dto.ExerciseDTO;
-import br.com.joschonarth.springfit.dto.ExerciseResponseDTO;
-import br.com.joschonarth.springfit.dto.UpdateExerciseDTO;
+import br.com.joschonarth.springfit.dto.request.ExerciseRequestDTO;
+import br.com.joschonarth.springfit.dto.response.ExerciseResponseDTO;
+import br.com.joschonarth.springfit.dto.request.UpdateExerciseRequestDTO;
 import br.com.joschonarth.springfit.enums.DifficultyLevel;
 import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
@@ -26,15 +26,15 @@ public class ExerciseService {
                 .toList();
     }
 
-    public void save(ExerciseDTO exerciseDTO) {
+    public void save(ExerciseRequestDTO exerciseRequestDTO) {
         ExerciseEntity exercise = ExerciseEntity.builder()
-                .name(exerciseDTO.getName())
-                .muscleGroup(exerciseDTO.getMuscleGroup())
-                .equipment(exerciseDTO.getEquipment())
-                .description(exerciseDTO.getDescription())
+                .name(exerciseRequestDTO.getName())
+                .muscleGroup(exerciseRequestDTO.getMuscleGroup())
+                .equipment(exerciseRequestDTO.getEquipment())
+                .description(exerciseRequestDTO.getDescription())
                 .difficultyLevel(
-                        exerciseDTO.getDifficultyLevel() != null
-                                ? exerciseDTO.getDifficultyLevel()
+                        exerciseRequestDTO.getDifficultyLevel() != null
+                                ? exerciseRequestDTO.getDifficultyLevel()
                                 : DifficultyLevel.BEGINNER
                 )
                 .build();
@@ -54,7 +54,7 @@ public class ExerciseService {
                 .toList();
     }
 
-    public ExerciseResponseDTO updateExercise(UUID id, UpdateExerciseDTO dto) throws NotFoundException {
+    public ExerciseResponseDTO updateExercise(UUID id, UpdateExerciseRequestDTO dto) throws NotFoundException {
         ExerciseEntity exercise = exerciseRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Exercise not found"));
 

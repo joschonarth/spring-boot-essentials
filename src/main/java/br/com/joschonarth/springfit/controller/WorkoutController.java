@@ -1,7 +1,7 @@
 package br.com.joschonarth.springfit.controller;
 
-import br.com.joschonarth.springfit.dto.WorkoutDTO;
-import br.com.joschonarth.springfit.dto.WorkoutResponseDTO;
+import br.com.joschonarth.springfit.dto.request.WorkoutRequestDTO;
+import br.com.joschonarth.springfit.dto.response.WorkoutResponseDTO;
 import br.com.joschonarth.springfit.exception.BadRequestException;
 import br.com.joschonarth.springfit.exception.NotFoundException;
 import br.com.joschonarth.springfit.service.WorkoutService;
@@ -37,8 +37,8 @@ public class WorkoutController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createWorkout(@Valid @RequestBody WorkoutDTO workoutDTO) throws NotFoundException, BadRequestException {
-        workoutService.createWorkout(workoutDTO);
+    public void createWorkout(@Valid @RequestBody WorkoutRequestDTO workoutRequestDTO) throws NotFoundException, BadRequestException {
+        workoutService.createWorkout(workoutRequestDTO);
     }
 
     @Operation(summary = "Get workout by ID")

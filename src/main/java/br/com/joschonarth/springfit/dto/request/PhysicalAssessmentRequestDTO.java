@@ -1,4 +1,4 @@
-package br.com.joschonarth.springfit.dto;
+package br.com.joschonarth.springfit.dto.request;
 
 import br.com.joschonarth.springfit.enums.BmiClassification;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(description = "Request body for creating a physical assessment")
-public class PhysicalAssessmentDTO {
+public class PhysicalAssessmentRequestDTO {
 
     @Schema(description = "Student ID", example = "123e4567-e89b-12d3-a456-426614174000")
     @NotNull

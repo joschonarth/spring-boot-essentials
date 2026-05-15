@@ -1,8 +1,8 @@
 package br.com.joschonarth.springfit.controller;
 
-import br.com.joschonarth.springfit.dto.LoginRequestDTO;
-import br.com.joschonarth.springfit.dto.RegisterRequestDTO;
-import br.com.joschonarth.springfit.dto.TokenResponseDTO;
+import br.com.joschonarth.springfit.dto.request.LoginRequestDTO;
+import br.com.joschonarth.springfit.dto.request.RegisterRequestDTO;
+import br.com.joschonarth.springfit.dto.response.TokenResponseDTO;
 import br.com.joschonarth.springfit.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

@@ -1,4 +1,4 @@
-package br.com.joschonarth.springfit.dto;
+package br.com.joschonarth.springfit.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(description = "Request body for updating a student")
-public class UpdateStudentDTO {
+public class UpdateStudentRequestDTO {
 
     @Schema(description = "Student full name", example = "John Doe")
     private String name;
